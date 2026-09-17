@@ -8,13 +8,14 @@
     --color-coral: #FFA896;
     --color-deep: #9B1313;
     --color-burgundy: #38000A;
+    --color-cream: #FFF9F7;
   }
 
   html {
     scroll-behavior: smooth;
     font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    color: #111827;
-    background-color: #FFFFFF;
+    color: #241016;
+    background-color: #FFF9F7;
   }
 
   body {
@@ -22,60 +23,192 @@
     padding: 0;
     overflow-x: hidden;
     min-height: 100vh;
+    background-color: #FFF9F7;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    text-wrap: balance;
   }
 
   ::selection {
     background-color: #CD1C18;
     color: #FFFFFF;
   }
+
+  :focus-visible {
+    outline: 2px solid #CD1C18;
+    outline-offset: 2px;
+  }
 }
 
 /* Custom subtle scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 10px;
+  height: 10px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #170004;
+  background: #FFF2EC;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #5A0B19;
-  border-radius: 4px;
+  background: #E7C9C2;
+  border-radius: 999px;
+  border: 2px solid #FFF2EC;
 }
 
 ::-webkit-scrollbar-thumb:hover {
   background: #CD1C18;
 }
 
-/* Glassmorphism helpers */
-.glass-burgundy {
-  background: rgba(56, 0, 10, 0.82);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 168, 150, 0.12);
+/* ------------------------------------------------------------------ */
+/* Editorial utilities                                                 */
+/* ------------------------------------------------------------------ */
+
+.text-balance {
+  text-wrap: balance;
 }
 
-.glass-card {
-  background: rgba(255, 255, 255, 0.85);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(229, 231, 235, 0.8);
+/* Small uppercase mono label with a leading rule */
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
 }
 
-/* Subtle tech grid background */
-.bg-tech-grid {
-  background-size: 32px 32px;
-  background-image: 
-    linear-gradient(to right, rgba(255, 168, 150, 0.05) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 168, 150, 0.05) 1px, transparent 1px);
+.eyebrow::before {
+  content: '';
+  width: 1.75rem;
+  height: 2px;
+  background: #CD1C18;
+  display: inline-block;
 }
 
-.bg-light-grid {
+.eyebrow-plain::before {
+  display: none;
+}
+
+/* Subtle dot / circuit backgrounds tuned for the light theme */
+.bg-tech-dots {
+  background-image: radial-gradient(rgba(56, 0, 10, 0.09) 1px, transparent 1px);
+  background-size: 22px 22px;
+}
+
+.bg-tech-grid-light {
   background-size: 40px 40px;
-  background-image: 
-    linear-gradient(to right, rgba(0, 0, 0, 0.03) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(0, 0, 0, 0.03) 1px, transparent 1px);
+  background-image:
+    linear-gradient(to right, rgba(56, 0, 10, 0.035) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(56, 0, 10, 0.035) 1px, transparent 1px);
 }
 
+.bg-tech-grid-dark {
+  background-size: 36px 36px;
+  background-image:
+    linear-gradient(to right, rgba(255, 168, 150, 0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 168, 150, 0.06) 1px, transparent 1px);
+}
+
+/* Fine hairline used between editorial rows */
+.rule-hair {
+  border-color: rgba(56, 0, 10, 0.1);
+}
+
+/* Hero technology-city visual: dissolves into the page background */
+.tech-city-fade {
+  -webkit-mask-image: radial-gradient(ellipse 96% 92% at 58% 46%, #000 55%, rgba(0,0,0,0.45) 76%, transparent 94%);
+  mask-image: radial-gradient(ellipse 96% 92% at 58% 46%, #000 55%, rgba(0,0,0,0.45) 76%, transparent 94%);
+}
+
+@media (max-width: 1023px) {
+  .tech-city-fade {
+    -webkit-mask-image: radial-gradient(ellipse 112% 100% at 50% 50%, #000 40%, rgba(0,0,0,0.4) 72%, transparent 92%);
+    mask-image: radial-gradient(ellipse 112% 100% at 50% 50%, #000 40%, rgba(0,0,0,0.4) 72%, transparent 92%);
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* Scroll reveal                                                       */
+/* ------------------------------------------------------------------ */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-delay-1 { transition-delay: 0.08s; }
+.reveal-delay-2 { transition-delay: 0.16s; }
+.reveal-delay-3 { transition-delay: 0.24s; }
+.reveal-delay-4 { transition-delay: 0.32s; }
+.reveal-delay-5 { transition-delay: 0.4s; }
+
+/* ------------------------------------------------------------------ */
+/* Hero entrance                                                       */
+/* ------------------------------------------------------------------ */
+
+@keyframes etdox-rise {
+  from { opacity: 0; transform: translateY(22px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes etdox-fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes etdox-draw {
+  from { stroke-dashoffset: 600; }
+  to { stroke-dashoffset: 0; }
+}
+
+.animate-rise {
+  animation: etdox-rise 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.animate-fade-in {
+  animation: etdox-fade 1s ease both;
+}
+
+.animate-draw {
+  stroke-dasharray: 600;
+  animation: etdox-draw 2.4s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.anim-1 { animation-delay: 0.05s; }
+.anim-2 { animation-delay: 0.15s; }
+.anim-3 { animation-delay: 0.25s; }
+.anim-4 { animation-delay: 0.35s; }
+.anim-5 { animation-delay: 0.45s; }
+.anim-6 { animation-delay: 0.55s; }
+
+/* ------------------------------------------------------------------ */
+/* Reduced motion                                                      */
+/* ------------------------------------------------------------------ */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+}

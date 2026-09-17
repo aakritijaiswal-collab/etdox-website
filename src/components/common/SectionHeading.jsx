@@ -1,5 +1,4 @@
 ﻿import React from "react";
-import Badge from "./Badge";
 
 export default function SectionHeading({
   eyebrow,
@@ -7,7 +6,8 @@ export default function SectionHeading({
   subtitle,
   align = "left",
   theme = "light",
-  badgeVariant,
+  _badgeVariant,
+  rule = true,
   className = ""
 }) {
   const isDark = theme === "dark";
@@ -16,9 +16,9 @@ export default function SectionHeading({
   return (
     <div className={`flex flex-col mb-12 sm:mb-16 ${alignClass} ${className}`}>
       {eyebrow && (
-        <div className="mb-3.5">
+        <div className={`mb-4 ${align === "center" ? "eyebrow-plain" : ""}`}>
           {typeof eyebrow === "string" ? (
-            <span className={`inline-block font-mono text-xs uppercase tracking-widest font-semibold ${isDark ? "text-[#FFA896]" : "text-[#CD1C18]"}`}>
+            <span className={`eyebrow ${isDark ? "text-[#FFA896]" : "text-[#CD1C18]"} ${align === "center" ? "eyebrow-plain" : ""}`}>
               {eyebrow}
             </span>
           ) : (
@@ -26,17 +26,28 @@ export default function SectionHeading({
           )}
         </div>
       )}
-      
+
       {title && (
-        <h2 className={`text-3xl sm:text-4xl lg:text-5xl font-display font-bold tracking-tight leading-tight ${isDark ? "text-white" : "text-gray-950"}`}>
+        <h2 className={`text-3xl sm:text-4xl lg:text-[2.75rem] font-display font-extrabold tracking-tight leading-[1.1] ${
+          isDark ? "text-white" : "text-[#38000A]"
+        }`}>
           {title}
         </h2>
       )}
 
       {subtitle && (
-        <p className={`mt-4 text-base sm:text-lg leading-relaxed ${isDark ? "text-gray-300" : "text-gray-600"}`}>
+        <p className={`mt-5 text-base sm:text-lg leading-relaxed ${
+          isDark ? "text-[#FFD9CE]" : "text-[#4A2A31]"
+        }`}>
           {subtitle}
         </p>
+      )}
+
+      {rule && (
+        <span
+          aria-hidden="true"
+          className={`mt-6 block h-px w-16 ${isDark ? "bg-[#CD1C18]" : "bg-[#CD1C18]"} ${align === "center" ? "mx-auto" : ""}`}
+        />
       )}
     </div>
   );

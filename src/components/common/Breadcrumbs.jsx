@@ -10,7 +10,7 @@ export default function Breadcrumbs({ items = [], theme = "light" }) {
       <Link
         to="/"
         className={`inline-flex items-center gap-1 transition-colors ${
-          isDark ? "text-gray-400 hover:text-[#FFA896]" : "text-gray-500 hover:text-[#CD1C18]"
+          isDark ? "text-gray-300 hover:text-[#FFA896]" : "text-[#7A5A60] hover:text-[#CD1C18]"
         }`}
       >
         <Home className="w-3.5 h-3.5" />
@@ -21,7 +21,7 @@ export default function Breadcrumbs({ items = [], theme = "light" }) {
         const isLast = idx === items.length - 1;
         return (
           <React.Fragment key={idx}>
-            <ChevronRight className={`w-3.5 h-3.5 ${isDark ? "text-gray-600" : "text-gray-400"}`} />
+            <ChevronRight className={`w-3.5 h-3.5 ${isDark ? "text-gray-500" : "text-[#C9A39E]"}`} />
             {isLast || !item.to ? (
               <span className={`font-semibold uppercase tracking-wider ${isDark ? "text-[#FFA896]" : "text-[#CD1C18]"}`}>
                 {item.label}
@@ -30,7 +30,7 @@ export default function Breadcrumbs({ items = [], theme = "light" }) {
               <Link
                 to={item.to}
                 className={`transition-colors uppercase tracking-wider ${
-                  isDark ? "text-gray-400 hover:text-[#FFA896]" : "text-gray-500 hover:text-[#CD1C18]"
+                  isDark ? "text-gray-300 hover:text-[#FFA896]" : "text-[#7A5A60] hover:text-[#CD1C18]"
                 }`}
               >
                 {item.label}

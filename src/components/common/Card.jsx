@@ -5,25 +5,34 @@ export default function Card({
   variant = "light",
   className = "",
   hoverEffect = true,
+  accent = false,
   onClick
 }) {
   const isDark = variant === "dark";
 
   const baseStyle = isDark
-    ? "bg-[#38000A]/70 border border-[#5A0B19]/60 text-white shadow-lg"
-    : "bg-white border border-gray-200/90 text-gray-900 shadow-sm";
+    ? "bg-[#38000A] border border-[#38000A]/15 text-white"
+    : "bg-white border border-[#38000A]/10 text-[#241016]";
 
   const hoverStyle = hoverEffect
     ? isDark
-      ? "hover:border-[#FFA896]/50 hover:bg-[#38000A]/90 hover:shadow-chili-glow transition-all duration-300"
-      : "hover:border-[#CD1C18]/40 hover:shadow-md transition-all duration-300"
+      ? "hover:border-[#FFA896]/45 transition-all duration-300"
+      : "hover:border-[#CD1C18]/40 hover:translate-y-[-2px] transition-all duration-300"
     : "";
 
   return (
     <div
       onClick={onClick}
-      className={`rounded-xl p-6 sm:p-8 backdrop-blur-sm relative overflow-hidden ${baseStyle} ${hoverStyle} ${className}`}
+      className={`relative rounded-xl p-6 sm:p-8 ${baseStyle} ${hoverStyle} ${className}`}
     >
+      {accent && (
+        <span
+          aria-hidden="true"
+          className={`absolute top-0 left-6 right-6 h-[3px] rounded-b ${
+            isDark ? "bg-[#CD1C18]" : "bg-[#CD1C18]"
+          }`}
+        />
+      )}
       {children}
     </div>
   );

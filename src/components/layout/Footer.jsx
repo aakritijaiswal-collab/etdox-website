@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { ArrowUpRight, Terminal, Shield } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 
 export default function Footer() {
   return (
@@ -9,20 +9,20 @@ export default function Footer() {
       <div className="border-b border-[#5A0B19]/30 bg-[#240006]/40 py-8 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="flex items-center gap-3">
-            <div className="w-8 h-8 rounded bg-gradient-to-br from-[#CD1C18] to-[#9B1313] flex items-center justify-center text-white font-display font-black">
+            <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-[#CD1C18] to-[#9B1313] flex items-center justify-center text-white font-display font-black shadow-chili-glow">
               E
             </div>
             <div>
-              <span className="font-display font-black text-xl text-white tracking-tight">ETDOX</span>
+              <span className="font-display font-extrabold text-xl text-white tracking-tight">ETDOX</span>
               <p className="text-xs font-mono text-[#FFA896] tracking-widest uppercase">
-                AI • SOFTWARE • DATA • CLOUD
+                We Build Intelligent Technology
               </p>
             </div>
           </div>
 
           <div className="flex flex-wrap items-center justify-center gap-4 text-xs font-mono text-gray-400">
             <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded bg-[#38000A] border border-[#5A0B19] text-gray-300">
-              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+              <span className="w-2 h-2 rounded-full bg-[#CD1C18] animate-pulse"></span>
               YOUR TECHNICAL TEAM, ON DEMAND
             </span>
             <Link

@@ -1,6 +1,6 @@
 ﻿import React, { useState, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
-import { Send, CheckCircle2, AlertCircle, Clock, Sparkles, FileText, ArrowRight, Copy, Check } from "lucide-react";
+import { CheckCircle2, AlertCircle, Copy, Check } from "lucide-react";
 import Button from "../common/Button";
 
 export default function LeadQualificationForm() {
@@ -163,7 +163,7 @@ export default function LeadQualificationForm() {
               onClick={handleCopySummary}
               className="inline-flex items-center gap-2 px-4 py-2.5 rounded bg-[#240006] border border-[#5A0B19] text-xs font-mono text-gray-300 hover:text-white hover:border-[#FFA896] transition-colors"
             >
-              {copied ? <Check className="w-4 h-4 text-emerald-400" /> : <Copy className="w-4 h-4" />}
+              {copied ? <Check className="w-4 h-4 text-[#CD1C18]" /> : <Copy className="w-4 h-4" />}
               <span>{copied ? "Copied Brief" : "Copy Brief Details"}</span>
             </button>
 

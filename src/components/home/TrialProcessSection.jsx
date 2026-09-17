@@ -1,6 +1,6 @@
 ﻿import React from "react";
 import { Link } from "react-router-dom";
-import { ArrowRight, CheckCircle2, ShieldCheck, Clock, FileCode, Check } from "lucide-react";
+import { ArrowRight, ShieldCheck, Clock } from "lucide-react";
 import Button from "../common/Button";
 import { trialOfferData } from "../../data/howWeWorkData";
 
@@ -65,7 +65,7 @@ export default function TrialProcessSection() {
         </div>
 
         {/* CTA & Scope / Eligibility Callout */}
-        <div className="mt-14 pt-10 border-t border-[#5A0B19]/70 flex flex-col lg:flex-row items-center justify-between gap-8 bg-[#170004]/60 p-8 rounded-2xl border border-[#5A0B19]/50">
+        <div className="mt-14 flex flex-col lg:flex-row items-center justify-between gap-8 bg-[#170004]/60 p-8 rounded-2xl border border-[#5A0B19]/50">
           <div className="space-y-2 max-w-2xl text-left">
             <div className="flex items-center gap-2 text-xs font-mono text-[#FFA896] font-semibold uppercase">
               <ShieldCheck className="w-4 h-4 text-[#CD1C18]" />

@@ -1,90 +1,124 @@
 ﻿import React from "react";
-import { Link } from "react-router-dom";
-import { ArrowRight, ShieldCheck, Sparkles, Terminal, CheckCircle2, ChevronRight } from "lucide-react";
-import HeroNetworkCanvas from "../components/home/HeroNetworkCanvas";
+import { ArrowRight, ShieldCheck, Sparkles, GitBranch, Zap } from "lucide-react";
+import technologyCity from "../assets/technology-city.png";
 import InteractivePillars from "../components/home/InteractivePillars";
 import TrialProcessSection from "../components/home/TrialProcessSection";
 import PrototypeOfferSection from "../components/home/PrototypeOfferSection";
 import ScaleTimelineSection from "../components/home/ScaleTimelineSection";
 import MultidisciplinarySection from "../components/home/MultidisciplinarySection";
+import FinalCtaSection from "../components/home/FinalCtaSection";
 import Button from "../components/common/Button";
 
 export default function Home() {
   return (
-    <div className="bg-white">
-      {/* 1. HERO SECTION (Dark Burgundy Cinematic) */}
-      <section className="relative min-h-[90vh] flex items-center justify-center bg-[#38000A] text-white overflow-hidden py-20 lg:py-28">
-        {/* Dynamic HTML5 Canvas Interactive Lattice */}
-        <HeroNetworkCanvas />
+    <div className="bg-[#FFF9F7]">
+      {/* 1. HERO — compact editorial lock-up + runtime diagram */}
+      <section className="relative overflow-hidden bg-[#FFF9F7] border-b border-[#38000A]/10">
+        {/* Top rule */}
+        <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#CD1C18] via-[#9B1313] to-transparent" />
+        <div className="absolute inset-0 bg-tech-dots opacity-50 pointer-events-none" />
+        <div className="absolute -top-24 right-0 w-[420px] h-[420px] rounded-full bg-[#FFA896]/20 blur-3xl pointer-events-none" />
 
-        {/* Ambient gradients */}
-        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#CD1C18]/15 rounded-full blur-[120px] pointer-events-none" />
-        <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-[#9B1313]/25 rounded-full blur-[100px] pointer-events-none" />
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center py-14 sm:py-16 lg:py-24">
+            {/* Lock-up */}
+            <div className="lg:col-span-6 xl:col-span-6">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-[#FFA896] text-[#9B1313] text-xs font-mono font-semibold tracking-widest uppercase mb-7 animate-rise anim-1">
+                <span className="w-2 h-2 rounded-full bg-[#CD1C18] animate-pulse-slow" />
+                <span>AI-Native Technology Partner</span>
+              </div>
 
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-          {/* Eyebrow */}
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[rgba(255,168,150,0.12)] border border-[rgba(255,168,150,0.25)] text-[#FFA896] text-xs font-mono font-semibold tracking-widest uppercase mb-8 shadow-sm animate-in fade-in slide-in-from-bottom-2 duration-500">
-            <span className="w-2 h-2 rounded-full bg-[#CD1C18] animate-ping" />
-            <span>AI • SOFTWARE • DATA • CLOUD</span>
+              <h1 className="font-display font-extrabold tracking-[-0.02em] text-[#38000A] leading-[1.02] text-[2.7rem] sm:text-[3.6rem] xl:text-[4.4rem] animate-rise anim-2">
+                We build{" "}
+                <span className="block text-[#CD1C18]">intelligent</span>
+                <span className="relative inline-block">
+                  technology.
+                  <svg
+                    className="absolute -bottom-3 left-0 w-full h-3 text-[#FFA896]"
+                    viewBox="0 0 260 12"
+                    preserveAspectRatio="none"
+                    fill="none"
+                    aria-hidden="true"
+                  >
+                    <path d="M3 9C70 2 190 2 257 7" stroke="currentColor" strokeWidth="5" strokeLinecap="round" />
+                  </svg>
+                </span>
+              </h1>
+
+              <p className="mt-8 text-base sm:text-lg text-[#4A2A31] leading-relaxed max-w-xl animate-rise anim-3">
+                ETDOX designs, builds and manages software, AI, data and cloud
+                systems for startups and enterprises — provable in a seven-day
+                sprint before you commit.
+              </p>
+
+              {/* CTAs */}
+              <div className="mt-9 flex flex-col sm:flex-row items-start sm:items-center gap-4 animate-rise anim-4">
+                <Button
+                  to="/contact?intent=project"
+                  variant="primary"
+                  size="lg"
+                  icon={ArrowRight}
+                  className="w-full sm:w-auto px-7 py-4 shadow-chili-glow font-bold"
+                >
+                  Start a Project
+                </Button>
+                <Button
+                  to="/contact?intent=trial"
+                  variant="outline"
+                  size="lg"
+                  className="w-full sm:w-auto"
+                >
+                  Try Us for 7 Days
+                </Button>
+              </div>
+
+              <p className="mt-5 text-xs font-mono text-[#7A5A60] flex items-center gap-2 animate-rise anim-5">
+                <ShieldCheck className="w-4 h-4 text-[#CD1C18]" />
+                No lock-in — you review the code before any commitment.
+              </p>
+            </div>
+
+            {/* Technology city visual — seamless, bleeds past its column and dissolves into the hero background */}
+            <div className="lg:col-span-6 xl:col-span-6 animate-rise anim-3">
+              <div className="tech-city-fade relative -mr-6 sm:-mr-12 lg:-mr-16 xl:-mr-28 -mt-3 sm:-mt-6 lg:mt-0">
+                <img
+                  src={technologyCity}
+                  alt="ETDOX technology city — cloud infrastructure, dashboards, data visualization and connected systems"
+                  loading="eager"
+                  decoding="async"
+                  draggable={false}
+                  className="w-full h-auto block select-none pointer-events-none"
+                />
+              </div>
+            </div>
           </div>
 
-          {/* Headline */}
-          <h1 className="text-4xl sm:text-6xl md:text-7xl font-display font-extrabold tracking-tight text-white leading-[1.08] mb-6 max-w-5xl mx-auto">
-            WE BUILD <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-white to-[#FFA896]">INTELLIGENT</span> <br className="hidden sm:inline" />
-            <span className="text-[#FFA896]">TECHNOLOGY.</span>
-          </h1>
-
-          {/* Subheading */}
-          <p className="text-lg sm:text-2xl text-gray-200 font-normal max-w-3xl mx-auto leading-relaxed mb-4">
-            We design, build and manage technology for businesses, startups and enterprises.
-          </p>
-
-          {/* Primary positioning */}
-          <div className="font-mono text-xs sm:text-sm text-[#FFA896] font-semibold tracking-wider uppercase mb-10">
-            PRIMARY POSITIONING: YOUR TECHNICAL TEAM, ON DEMAND.
-          </div>
-
-          {/* Hero CTAs */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 max-w-md mx-auto">
-            <Button
-              to="/contact?intent=project"
-              variant="primary"
-              size="lg"
-              icon={ArrowRight}
-              className="w-full sm:w-auto shadow-chili-glow font-bold text-sm tracking-wide"
-            >
-              START A PROJECT
-            </Button>
-
-            <Button
-              to="/contact?intent=trial"
-              variant="outlineOnDark"
-              size="lg"
-              className="w-full sm:w-auto font-mono text-xs tracking-wider"
-            >
-              TRY US FOR 7 DAYS
-            </Button>
-          </div>
-
-          {/* Subtle trust / credibility strip */}
-          <div className="mt-16 pt-8 border-t border-[#5A0B19]/60 flex flex-wrap items-center justify-center gap-6 sm:gap-10 text-xs font-mono text-gray-300">
-            <div className="flex items-center gap-2">
-              <ShieldCheck className="w-4 h-4 text-[#CD1C18]" />
-              <span>Zero-Lockin 7-Day Sprint</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <Sparkles className="w-4 h-4 text-[#FFA896]" />
-              <span>1 Free Prototype for Suitable Projects</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <Terminal className="w-4 h-4 text-[#FFA896]" />
-              <span>Full Source Code Handover</span>
-            </div>
+          {/* Signal band */}
+          <div className="relative grid grid-cols-2 lg:grid-cols-4 border-t border-[#38000A]/10 py-5 gap-y-4">
+            {[
+              { icon: Zap, label: "7-Day Free Trial", sub: "Evaluate production velocity" },
+              { icon: Sparkles, label: "1 Free Prototype", sub: "For suitable projects", },
+              { icon: GitBranch, label: "Full IP Handover", sub: "Source, docs, ownership" },
+              { icon: ShieldCheck, label: "24H Architecture Review", sub: "On qualifying submissions" },
+            ].map((item, i) => {
+              const Icon = item.icon;
+              return (
+                <div key={item.label} className={`flex items-center gap-3 px-4 sm:px-6 ${i % 2 === 1 ? "border-l border-[#38000A]/10" : ""} ${i > 0 ? "lg:border-l lg:border-[#38000A]/10" : ""}`}>
+                  <span className="hidden sm:flex w-9 h-9 rounded-lg bg-[#FFA896]/40 border border-[#FFA896] text-[#9B1313] items-center justify-center shrink-0">
+                    <Icon className="w-4 h-4" />
+                  </span>
+                  <div className="min-w-0">
+                    <p className="font-mono text-[11px] sm:text-xs font-bold text-[#38000A] leading-tight">{item.label}</p>
+                    <p className="text-[10px] sm:text-[11px] text-[#7A5A60] leading-tight truncate">{item.sub}</p>
+                  </div>
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>
 
-      {/* 2. WHAT WE DO: Four Interactive Pillars */}
+      {/* 2. WHAT WE DO */}
       <InteractivePillars />
 
       {/* 3. TRY US FOR 7 DAYS */}
@@ -99,47 +133,8 @@ export default function Home() {
       {/* 6. ONE TEAM FOR YOUR TECHNOLOGY */}
       <MultidisciplinarySection />
 
-      {/* 7. FINAL CTA SECTION */}
-      <section className="py-24 bg-[#170004] text-white border-t border-[#5A0B19]/50 relative overflow-hidden">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10 space-y-8">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#38000A] border border-[#5A0B19] text-xs font-mono font-semibold text-[#FFA896] uppercase tracking-wider">
-            <span>GET STARTED TODAY</span>
-          </div>
-
-          <h2 className="text-3xl sm:text-5xl lg:text-6xl font-display font-bold tracking-tight text-white leading-tight">
-            Start with a requirement.
-          </h2>
-
-          <p className="text-base sm:text-xl text-gray-300 max-w-2xl mx-auto">
-            Choose a project, 7-day trial, free prototype or consultation.
-          </p>
-
-          <div className="pt-4 flex flex-wrap items-center justify-center gap-4">
-            <Button
-              to="/contact"
-              variant="primary"
-              size="lg"
-              icon={ArrowRight}
-              className="text-base px-8 py-4 shadow-chili-glow font-bold tracking-wider"
-            >
-              LET'S TALK
-            </Button>
-
-            <Button
-              to="/how-we-work"
-              variant="outlineOnDark"
-              size="lg"
-              className="font-mono text-xs"
-            >
-              LEARN HOW WE WORK
-            </Button>
-          </div>
-
-          <div className="pt-8 text-xs font-mono text-gray-400">
-            <span>Direct architectural discussion • Prompt response within 1 business day</span>
-          </div>
-        </div>
-      </section>
+      {/* 7. FINAL CTA */}
+      <FinalCtaSection />
     </div>
   );
 }

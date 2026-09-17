@@ -1,118 +1,150 @@
 ﻿import React from "react";
-import { Link, useSearchParams } from "react-router-dom";
-import { ArrowRight, ShieldCheck, Clock, Sparkles, Phone, Mail, MapPin } from "lucide-react";
-import Breadcrumbs from "../components/common/Breadcrumbs";
+import { ShieldCheck, Clock, Sparkles, Phone, Mail, FileText, Wrench, Layers } from "lucide-react";
+import PageHero from "../components/common/PageHero";
+import Reveal from "../components/common/Reveal";
 import LeadQualificationForm from "../components/forms/LeadQualificationForm";
 
 export default function Contact() {
-  const [searchParams] = useSearchParams();
-  const intent = searchParams.get("intent");
+  const intent = new URLSearchParams(window.location.search).get("intent");
+
+  const pathway = (() => {
+    switch (intent) {
+      case "trial":
+        return { icon: Wrench, title: "7-Day Free Trial", desc: "Test our speed with a discrete, real-world technical task in one week." };
+      case "prototype":
+        return { icon: FileText, title: "Free Prototype", desc: "Initial architectural spike or interactive UX prototype for qualifying projects." };
+      default:
+        return { icon: Layers, title: "Full Project Delivery", desc: "Dedicated multidisciplinary pods or milestone-based contracts, scoped to your stack." };
+    }
+  })();
+
+  const PathwayIcon = pathway.icon;
 
   return (
-    <div className="bg-white">
-      {/* Header Banner (Dark Burgundy) */}
-      <section className="bg-[#38000A] text-white py-16 lg:py-20 border-b border-[#5A0B19] relative overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <Breadcrumbs
-            theme="dark"
-            items={[{ label: "LET'S TALK / CONTACT" }]}
-          />
+    <div className="bg-[#FFF9F7]">
+      {/* Header */}
+      <PageHero
+        eyebrow="Direct technical engagement"
+        title={
+          <>
+            Start with a{" "}
+            <span className="text-[#CD1C18]">requirement.</span>
+          </>
+        }
+        description="Choose a project, 7-day trial, free prototype, or consultation. Connect directly with our systems architects and delivery leads."
+        breadcrumbs={[{ label: "Contact" }]}
+        index="08"
+      />
 
-          <div className="max-w-3xl space-y-4">
-            <span className="font-mono text-xs uppercase tracking-widest text-[#FFA896] font-semibold">
-              DIRECT TECHNICAL ENGAGEMENT
-            </span>
-            <h1 className="text-3xl sm:text-5xl font-display font-bold text-white tracking-tight">
-              Start with a requirement.
-            </h1>
-            <p className="text-gray-300 text-base sm:text-lg leading-relaxed">
-              Choose a project, 7-day trial, free prototype or consultation. Connect directly with our systems architects and delivery leads.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* Main Form Section */}
-      <section className="py-20 bg-[#FBFBFC]">
+      {/* Main */}
+      <section className="py-16 lg:py-20 bg-white border-b border-[#38000A]/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
-            {/* Left Form (8 Cols) */}
-            <div className="lg:col-span-8 bg-white border border-gray-200 rounded-3xl p-6 sm:p-10 shadow-sm">
-              <div className="border-b border-gray-100 pb-6 mb-8">
-                <span className="text-xs font-mono font-bold uppercase tracking-wider text-[#CD1C18]">
-                  TECHNICAL LEAD QUALIFICATION
-                </span>
-                <h2 className="text-2xl sm:text-3xl font-display font-bold text-gray-950 mt-1">
-                  Specify Your Technical Scope
-                </h2>
-                <p className="text-xs sm:text-sm text-gray-500 mt-1">
-                  Please specify your technical requirements to receive an architecture assessment and delivery timeline.
-                </p>
-              </div>
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
+            {/* Left Form */}
+            <div className="lg:col-span-8">
+              <Reveal>
+                <div className="bg-[#FFF9F7] border border-[#38000A]/10 rounded-2xl p-6 sm:p-10">
+                  <div className="border-b border-[#38000A]/10 pb-6 mb-8">
+                    <span className="text-xs font-mono font-bold uppercase tracking-wider text-[#CD1C18]">
+                      Technical lead qualification
+                    </span>
+                    <h2 className="text-2xl sm:text-3xl font-display font-extrabold text-[#38000A] mt-1 tracking-tight">
+                      Specify Your Technical Scope
+                    </h2>
+                    <p className="text-xs sm:text-sm text-[#4A2A31] mt-1 leading-relaxed">
+                      Please specify your technical requirements to receive an
+                      architecture assessment and delivery timeline.
+                    </p>
+                  </div>
 
-              <LeadQualificationForm />
+                  <LeadQualificationForm />
+                </div>
+              </Reveal>
             </div>
 
-            {/* Right Information & FAQs (4 Cols) */}
-            <div className="lg:col-span-4 space-y-6">
-              {/* Engagement Models Box */}
-              <div className="bg-[#38000A] text-white p-6 rounded-2xl border border-[#5A0B19] space-y-4">
-                <span className="text-xs font-mono text-[#FFA896] uppercase tracking-wider font-bold">
-                  ENGAGEMENT PATHWAYS
-                </span>
-                <div className="space-y-3 text-xs">
-                  <div className="border-b border-[#5A0B19] pb-2">
-                    <strong className="text-white block font-display">7-Day Free Trial</strong>
-                    <span className="text-gray-300">Test our speed with a discrete, real-world technical task.</span>
+            {/* Right info column */}
+            <div className="lg:col-span-4 space-y-5">
+              <Reveal delay={1}>
+                <div className="bg-[#38000A] text-white p-6 rounded-2xl border border-[#5A0B19] space-y-4 shadow-card-subtle">
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 rounded-lg bg-[#CD1C18] text-white flex items-center justify-center">
+                      <PathwayIcon className="w-5 h-5" />
+                    </div>
+                    <div>
+                      <span className="text-[10px] font-mono text-[#FFA896] uppercase tracking-widest font-bold block">
+                        Selected pathway
+                      </span>
+                      <strong className="font-display text-base block">{pathway.title}</strong>
+                    </div>
                   </div>
-                  <div className="border-b border-[#5A0B19] pb-2">
-                    <strong className="text-white block font-display">Free Prototype</strong>
-                    <span className="text-gray-300">Initial architectural spike or UX prototype for suitable projects.</span>
-                  </div>
-                  <div>
-                    <strong className="text-white block font-display">Full Project Delivery</strong>
-                    <span className="text-gray-300">Dedicated multidisciplinary pods or milestone-based contracts.</span>
+                  <p className="text-xs text-gray-300 leading-relaxed">
+                    {pathway.desc}
+                  </p>
+                  <div className="pt-1 border-t border-[#5A0B19] space-y-2">
+                    <span className="text-[10px] font-mono text-[#FFA896] uppercase tracking-widest font-bold block">
+                      Engagement pathways
+                    </span>
+                    <div className="space-y-2 text-xs">
+                      <div className="flex items-start gap-2">
+                        <Wrench className="w-3.5 h-3.5 text-[#FFA896] shrink-0 mt-0.5" />
+                        <span className="text-gray-300">7-Day Free Trial — test speed on a discrete task.</span>
+                      </div>
+                      <div className="flex items-start gap-2">
+                        <FileText className="w-3.5 h-3.5 text-[#FFA896] shrink-0 mt-0.5" />
+                        <span className="text-gray-300">Free Prototype — avoid costly incorrect builds.</span>
+                      </div>
+                      <div className="flex items-start gap-2">
+                        <Layers className="w-3.5 h-3.5 text-[#FFA896] shrink-0 mt-0.5" />
+                        <span className="text-gray-300">Full Project Delivery — multidisciplinary pods.</span>
+                      </div>
+                    </div>
                   </div>
                 </div>
-              </div>
+              </Reveal>
 
-              {/* Guarantees Box */}
-              <div className="bg-white p-6 rounded-2xl border border-gray-200 space-y-3">
-                <span className="text-xs font-mono text-[#CD1C18] uppercase tracking-wider font-bold">
-                  CLIENT COMMITMENTS
-                </span>
-                <ul className="text-xs text-gray-600 space-y-2">
-                  <li className="flex items-start gap-2">
-                    <ShieldCheck className="w-4 h-4 text-[#CD1C18] shrink-0 mt-0.5" />
-                    <span>Mutual Non-Disclosure Agreement (NDA) before deep technical exchange</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <Clock className="w-4 h-4 text-[#CD1C18] shrink-0 mt-0.5" />
-                    <span>Architectural review response within 24 hours</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <Sparkles className="w-4 h-4 text-[#CD1C18] shrink-0 mt-0.5" />
-                    <span>100% intellectual property (IP) assignment upon delivery</span>
-                  </li>
-                </ul>
-              </div>
-
-              {/* Contact Information */}
-              <div className="bg-gray-50 p-6 rounded-2xl border border-gray-200 space-y-3 text-xs">
-                <span className="font-mono text-gray-400 uppercase tracking-wider font-bold block">
-                  DIRECT COMMUNICATIONS
-                </span>
-                <div className="space-y-2 text-gray-700">
-                  <p className="flex items-center gap-2">
-                    <Mail className="w-4 h-4 text-[#CD1C18]" />
-                    <span className="font-mono">contact@etdox.com</span>
-                  </p>
-                  <p className="flex items-center gap-2">
-                    <Phone className="w-4 h-4 text-[#CD1C18]" />
-                    <span className="font-mono">+1 (800) ETDOX-AI</span>
-                  </p>
+              <Reveal delay={2}>
+                <div className="bg-[#FFF9F7] p-6 rounded-2xl border border-[#38000A]/10 space-y-3">
+                  <span className="text-xs font-mono text-[#CD1C18] uppercase tracking-wider font-bold">
+                    Client commitments
+                  </span>
+                  <ul className="text-xs text-[#4A2A31] space-y-2.5">
+                    <li className="flex items-start gap-2">
+                      <ShieldCheck className="w-4 h-4 text-[#CD1C18] shrink-0 mt-0.5" />
+                      <span>Mutual Non-Disclosure Agreement (NDA) before deep technical exchange</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <Clock className="w-4 h-4 text-[#CD1C18] shrink-0 mt-0.5" />
+                      <span>Architectural review response within 24 hours</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <Sparkles className="w-4 h-4 text-[#CD1C18] shrink-0 mt-0.5" />
+                      <span>100% intellectual property (IP) assignment upon delivery</span>
+                    </li>
+                  </ul>
                 </div>
-              </div>
+              </Reveal>
+
+              <Reveal delay={3}>
+                <div className="bg-[#FFF9F7] p-6 rounded-2xl border border-[#38000A]/10 space-y-3 text-xs">
+                  <span className="font-mono text-[#7A5A60] uppercase tracking-wider font-bold block">
+                    Direct communications
+                  </span>
+                  <div className="space-y-2 text-[#4A2A31]">
+                    <p className="flex items-center gap-2">
+                      <Mail className="w-4 h-4 text-[#CD1C18]" />
+                      <span className="font-mono">contact@etdox.com</span>
+                    </p>
+                    <p className="flex items-center gap-2">
+                      <Phone className="w-4 h-4 text-[#CD1C18]" />
+                      <span className="font-mono">+1 (800) ETDOX-AI</span>
+                    </p>
+                  </div>
+                  <div className="pt-2 border-t border-[#38000A]/10 text-[11px] text-[#7A5A60] leading-relaxed">
+                    Architecture reviews are scheduled within 24 hours of a
+                    qualifying submission.
+                  </div>
+                </div>
+              </Reveal>
             </div>
           </div>
         </div>
